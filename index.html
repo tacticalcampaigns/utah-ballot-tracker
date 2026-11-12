@@ -107,7 +107,7 @@ function partyColor(party, margin){
 }
 function makeMap(elId, geoUrl, values, keyFn, styleFn, tipFn){
   var map=L.map(elId,{scrollWheelZoom:false}).setView([39.35,-111.7],7);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',maxZoom:12}).addTo(map);
+  L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=cb1_57v9_1_2b6d513cfb708c98c90928e6',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',maxZoom:12}).addTo(map);
   fetch(geoUrl).then(function(r){return r.json();}).then(function(g){
     L.geoJSON(g,{style:function(f){var v=values[keyFn(f)];return {fillColor:styleFn(v,f),weight:1,color:'#ffffff',fillOpacity:0.85};},
     onEachFeature:function(f,l){var v=values[keyFn(f)];l.bindTooltip(tipFn(f,v),{sticky:true});}}).addTo(map);
