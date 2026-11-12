@@ -32,6 +32,8 @@ h3{font-size:16px;margin:18px 0 6px}
 .hero .l{font-size:.98em;opacity:.92;margin-top:4px}
 .hero .prog{font-size:.86em;opacity:.85;margin-top:10px;line-height:1.6}
 .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.statgrid.six{grid-template-columns:repeat(3,1fr)}
+.svgwrap{overflow-x:auto}.svgwrap svg{display:block}
 .statcard{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fff}
 .statcard .k{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .statcard .v{font-size:1.7em;font-weight:700;margin-top:2px}
@@ -69,8 +71,8 @@ button.exp{background:none;border:none;color:var(--navy);cursor:pointer;font-siz
 footer{background:var(--deep);color:rgba(255,255,255,.75);padding:28px 0;font-size:13.5px;margin-top:40px;line-height:1.6}
 footer a{color:#fff}
 footer .meth{max-width:1180px;margin:0 auto;padding:0 20px 12px}
-@media(max-width:820px){.statgrid{grid-template-columns:1fr 1fr}.logo{height:52px}.product{font-size:20px}.menu{min-width:280px}}
-@media(max-width:560px){.statgrid{grid-template-columns:1fr}}
+@media(max-width:820px){.statgrid{grid-template-columns:1fr 1fr}.statgrid.six{grid-template-columns:1fr 1fr}.logo{height:52px}.product{font-size:20px}.menu{min-width:280px}}
+@media(max-width:560px){.statgrid{grid-template-columns:1fr}.statgrid.six{grid-template-columns:1fr}}
 </style><script>
 let sortCol=-1, sortAsc=true;
 function sortTable(id, col, numeric){
