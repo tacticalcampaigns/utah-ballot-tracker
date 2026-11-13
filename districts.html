@@ -92,9 +92,9 @@ function sortTable(id, col, numeric){
   });
 }
 
-function pctColor(p){
+function pctColor(p, canvassed){
   if(p==null) return '#E8EEF6';
-  if(p>=100) return '#022553';
+  if(canvassed || p>=100) return '#022553';
   if(p>=99) return '#265289';
   if(p>=95) return '#4A6FA5';
   if(p>=90) return '#8FA9CC';
@@ -119,7 +119,7 @@ function makeMap(elId, geoUrl, values, keyFn, styleFn, tipFn){
 function countyTip(f,v){
   if(!v) return f.properties.NAME;
   var s='<b>'+v.name+'</b><br>Ballots in results: '+v.ballots.toLocaleString()+'<br>Est. left: '+v.left.toLocaleString()+'<br>Counted: '+v.pct+'% of est. received';
-  if(v.canvassed) s+='<br><b>Canvassed — final</b>';
+  if(v.canvassed) s+='<br><b>Canvassed — final</b>'+(v.rejected!=null?'<br>Rejected ballots: '+v.rejected.toLocaleString():'');
   return s;
 }
 function districtTip(f,v){
