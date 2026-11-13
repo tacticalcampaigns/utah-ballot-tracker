@@ -37,6 +37,7 @@ h3{font-size:16px;margin:18px 0 6px}
 .statcard{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fff}
 .statcard .k{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .statcard .v{font-size:1.7em;font-weight:700;margin-top:2px}
+.statcard .v .pct{font-size:.58em;font-weight:600;color:var(--muted)}
 .statcard .d{font-size:13px;color:var(--muted);margin-top:2px}
 table{border-collapse:collapse;width:100%;background:#fff;font-size:.86em;margin:14px 0}
 th,td{border:1px solid var(--line);padding:7px 8px;text-align:right}
@@ -139,7 +140,7 @@ function districtTip(f,v){
 <div class="statgrid six">
 <div class="statcard"><div class="k">Registered voters</div><div class="v">2,099,221</div><div class="d">Total registered statewide (Tableau, Nov 2)</div></div>
 <div class="statcard"><div class="k">Voter credit</div><div class="v">1,072,081</div><div class="d">Est. total ballots received statewide</div></div>
-<div class="statcard"><div class="k">Ballots in results</div><div class="v">1,036,372</div><div class="d">Whole-state sum &middot; +413 last release</div></div>
+<div class="statcard"><div class="k">Ballots in results</div><div class="v">1,036,372 <span class="pct">(96.7%)</span></div><div class="d">Whole-state sum &middot; +413 last release</div></div>
 <div class="statcard"><div class="k">Est. yet to report</div><div class="v">35,709</div><div class="d">Est. received &minus; reported, all 29 counties</div></div>
 <div class="statcard"><div class="k">Turnout so far</div><div class="v">49.4%</div><div class="d">of 2,099,221 total registered voters</div></div>
 <div class="statcard"><div class="k">Counties canvassed</div><div class="v">6 of 29</div><div class="d">Final: Cache, Emery, Garfield, Kane, Millard, Piute</div></div>
@@ -177,7 +178,7 @@ pool includes provisional and curable ballots, some of which will not ultimately
 For reference, the already-in-hand backlogs are smaller: Utah County verified-but-not-counted 2,180,
 Salt Lake County in-process 15,848 &mdash; the gap between those and the &ldquo;yet to report&rdquo; figures is ballots the counties
 estimate are still arriving by mail. There is no late mail in Utah: total ballots received is fixed at the close of polls.</div>
-<div class="foot"><b>Definitions:</b> the statewide 2,099,221 is <i>total</i> registered voters (Ali Majid&rsquo;s November 2026 Dashboard, Tableau Public); county &ldquo;Registered&rdquo; figures on the Counties page are <i>active</i> registered voters (Nov 3 voted file), so statewide turnout % is not directly comparable to county turnout %. &ldquo;Ballots in results&rdquo; = max ballots-cast across contests per county (state report, Precinct Results sheet). All figures are unofficial until canvassed.</div>
+<div class="foot"><b>Definitions:</b> the statewide 2,099,221 is <i>total</i> registered voters (Ali Majid&rsquo;s November 2026 Dashboard, Tableau Public); county &ldquo;Registered&rdquo; figures on the Counties page are <i>active</i> registered voters (Nov 3 voted file), so statewide turnout % is not directly comparable to county turnout %. &ldquo;Ballots in results&rdquo; = max ballots-cast across contests per county (state report, Precinct Results sheet). The % beside it is its share of estimated total ballots received statewide. All figures are unofficial until canvassed.</div>
 </main><footer><div class="meth">Sources: Utah Lieutenant Governor&rsquo;s election results (electionresults.utah.gov) &mdash; state All-Results reports and county Ballot Statistics reports; county clerk reconciliation pages; Ali Majid&rsquo;s November 2026 Dashboard (Tableau Public) for registration. District boundaries: Utah Geospatial Resource Center (AGRC). All figures are unofficial until canvassed. This tracker is not affiliated with the State of Utah or any county.</div><div class="wrap">&copy; 2026 Tactical Campaigns &middot; <a href="https://tacticalcampaigns.com/">tacticalcampaigns.com</a> &middot; Political data &amp; intelligence</div></footer><script>
 (function(){
   var dd=document.getElementById('dashDrop'); if(!dd) return;
