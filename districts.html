@@ -111,8 +111,9 @@ function makeMap(elId, geoUrl, values, keyFn, styleFn, tipFn){
   var map=L.map(elId,{scrollWheelZoom:false}).setView([39.35,-111.7],7);
   L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png?key=cb1_57v9_1_2b6d513cfb708c98c90928e6',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',maxZoom:12}).addTo(map);
   fetch(geoUrl).then(function(r){return r.json();}).then(function(g){
-    L.geoJSON(g,{style:function(f){var v=values[keyFn(f)];return {fillColor:styleFn(v,f),weight:1,color:'#ffffff',fillOpacity:0.85};},
+    var layer=L.geoJSON(g,{style:function(f){var v=values[keyFn(f)];return {fillColor:styleFn(v,f),weight:1,color:'#ffffff',fillOpacity:0.85};},
     onEachFeature:function(f,l){var v=values[keyFn(f)];l.bindTooltip(tipFn(f,v),{sticky:true});}}).addTo(map);
+    map.fitBounds(layer.getBounds(),{padding:[10,10]});
   });
   return map;
 }
@@ -134,7 +135,7 @@ function districtTip(f,v){
 </script></head><body><header><div class="wrap topbar"><a href="/"><img class="logo" src="logo.png" alt="Tactical Campaigns" width="600" height="288"></a><span class="vdiv" aria-hidden="true"></span><div><h1 class="product">Tactical Data</h1><div class="product-sub">Utah Ballot Count Tracker &middot; 2026 General Election</div></div></div><div class="navstrip"><div class="wrap"><nav><div class="dropdown" id="dashDrop"><button class="dropbtn" aria-haspopup="true" aria-expanded="false">Dashboards &#9662;</button><div class="menu"><a href="/#early-vote"><span>Utah Early Vote Dashboard</span><span class="st">Coming soon</span></a><a href="/#mail-map"><span>Utah Precinct Mail Map</span><span class="st">Coming soon</span></a><a href="/#race-monitor"><span>Utah Race Monitor</span><span class="st">Coming soon</span></a><a href="/utah-ballot-tracker/"><span>Utah Ballot Count Tracker</span><span class="st live">Live</span></a><a href="/#influence-mapper"><span>Utah Influence Mapper</span><span class="st">Planned</span></a></div></div><a href="index.html">Overview</a><a href="counties.html">Counties</a><a href="districts.html" class="active">Districts</a><a href="races.html">Races</a><a href="congress.html">Congress</a></nav></div></div></header><main class="wrap">
 <h1 class="page-title">District Stats</h1>
 <hr class="rule">
-<div class="sub">Every Utah State House, State Senate, and U.S. House district: who is registered there, how the district is voting now, and how strong the Republican vote was in 2024. Updated as of Thu Nov 12, 2026, 6:10 PM MST (state results) &middot; checked Thu Nov 12, 2026, 6:33 PM MST. Click a column header to sort; use the filters to narrow the list.</div>
+<div class="sub">Every Utah State House, State Senate, and U.S. House district: who is registered there, how the district is voting now, and how strong the Republican vote was in 2024. Updated as of Thu Nov 12, 2026, 6:10 PM MST (state results) &middot; checked Thu Nov 12, 2026, 7:14 PM MST. Click a column header to sort; use the filters to narrow the list.</div>
 <h2>District maps</h2>
 <div class="tabs">
 <button id="tab-hd" class="on" onclick="showMap('hd')">House (75)</button>
