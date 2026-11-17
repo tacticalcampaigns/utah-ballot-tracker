@@ -66,6 +66,7 @@ button.exp{background:none;border:none;color:var(--navy);cursor:pointer;font-siz
 .take{font-size:.92em;color:#333;background:#fff;border-left:4px solid var(--navy);padding:8px 12px;margin:10px 0}
 .map{position:relative;height:520px;border:1px solid var(--line);border-radius:10px;margin:12px 0;z-index:1}
 .map-sm{height:420px}
+.map-votes{max-width:560px;height:680px;margin:12px auto}
 .map-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;background:#f4f6f8;font-size:14px;z-index:500;pointer-events:none;border-radius:10px}
 .chart-tip{position:fixed;display:none;pointer-events:none;background:#1b2432;color:#fff;padding:6px 10px;border-radius:6px;font-size:13px;line-height:1.4;z-index:1000;max-width:340px;box-shadow:0 2px 10px rgba(0,0,0,.3)}
 .map-legend{font-size:13px;color:var(--muted);margin:4px 0 14px}
@@ -77,7 +78,7 @@ footer{background:var(--deep);color:rgba(255,255,255,.75);padding:28px 0;font-si
 footer a{color:#fff}
 footer .meth{max-width:1180px;margin:0 auto;padding:0 20px 12px}
 @media(max-width:820px){.statgrid{grid-template-columns:1fr 1fr}.statgrid.six{grid-template-columns:1fr 1fr}.logo{height:52px}.product{font-size:20px}.menu{min-width:280px}}
-@media(max-width:560px){.statgrid{grid-template-columns:1fr}.statgrid.six{grid-template-columns:1fr}}
+@media(max-width:560px){.statgrid{grid-template-columns:1fr}.statgrid.six{grid-template-columns:1fr}.map-votes{height:520px}}
 </style><script>
 let sortCol=-1, sortAsc=true;
 function sortTable(id, col, numeric){
@@ -160,7 +161,7 @@ function districtTip(f,v){
 <div class="statcard"><div class="k">Votes counted in each CD (CVR)</div><div id="box-cd-rows"></div><div class="d" id="box-cd-d"></div></div>
 </div>
 <h2>Counties &mdash; CVR ballots counted</h2>
-<div id="map-votes" class="map map-sm"><div class="map-loading">Loading counties map&hellip;</div></div>
+<div id="map-votes" class="map map-votes"><div class="map-loading">Loading counties map&hellip;</div></div>
 <div class="map-legend"><span class="sw" style="background:#E5E7EB"></span>CVR not yet posted &nbsp;<span class="sw" style="background:#C9D6E8"></span>&lt;1,000 &nbsp;<span class="sw" style="background:#8FA9CC"></span>1,000&ndash;5,000 &nbsp;<span class="sw" style="background:#4A6FA5"></span>5,000&ndash;25,000 &nbsp;<span class="sw" style="background:#265289"></span>25,000&ndash;100,000 &nbsp;<span class="sw" style="background:#022553"></span>100,000+. Counties with no ballots in the selected geography are dimmed. Boundaries: Utah Geospatial Resource Center (AGRC).</div>
 <h2>How these ballots voted &mdash; by race</h2>
 <div class="chartbox">
@@ -282,9 +283,12 @@ function votesTip(f,v){
 }
 let votesMap=null, votesLayer=null;
 // Utah bounds (with a small margin). The votes map fits to the selected
-// geography's counties on every filter change and never zooms out past
-// the state — the Nov 17 live check caught it refitting to a western-US
-// view after a geography change.
+// geography's counties on every filter change. FRAMING WARNING: the
+// statewide fit is height-constrained (Utah is tall and narrow), so the
+// map container MUST stay tall and narrow (.map-votes: 560x680). In a
+// wide/short container fitBounds lands on zoom 6 and Utah fills only
+// ~20% of the width — the western-US view the Nov 17 live checks caught.
+// Do not put this map back in a full-width .map/.map-sm container.
 var UTAH_BOUNDS=L.latLngBounds([[36.9,-114.15],[42.1,-108.95]]);
 function applyMapView(){
   if(!votesMap || !votesLayer) return;
@@ -300,8 +304,9 @@ function applyMapView(){
       }
     });
   }
-  if(!b) b=UTAH_BOUNDS;
-  votesMap.fitBounds(b,{padding:[10,10],maxZoom:9});
+  var pad=[10,10];
+  if(!b) b=UTAH_BOUNDS; else pad=[28,28];
+  votesMap.fitBounds(b,{padding:pad,maxZoom:9});
 }
 function applyMapFilter(){
   if(!votesLayer) return;
@@ -319,8 +324,9 @@ function initVotesMap(){
     function(v,f){ return votesColor(v); },
     votesTip,
     function(layer){ votesLayer=layer; applyMapFilter(); });
-  // Hard floor: the map can never zoom out past the state or pan away
-  // from Utah, whatever any future code path does.
+  // The default fit is zoom 7 in the tall .map-votes container. minZoom
+  // 6 stays as a floor (one manual step out from the default fit);
+  // maxBounds keeps panning inside Utah.
   votesMap.setMinZoom(6);
   votesMap.setMaxBounds(L.latLngBounds([[36.4,-114.7],[42.6,-108.4]]));
 }
