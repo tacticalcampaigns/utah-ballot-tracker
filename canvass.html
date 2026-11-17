@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Utah 2026 General — Canvass — Tactical Data</title><meta name="description" content="Utah 2026 general election ballot counting — live results, per-release history, and district-level detail from official state sources."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+:root{--crimson:#9A1220;--navy:#265289;--deep:#022553;--ink:#1b2432;--muted:#5b6572;--line:#e3e6ea;--card:#f7f8fa}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff;line-height:1.55}
+a{color:var(--navy)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header{background:#fff}
+.topbar{display:flex;align-items:center;gap:18px;padding:16px 0}
+.logo{height:64px;width:auto;display:block}
+.vdiv{width:1px;height:46px;background:var(--line);flex:0 0 auto}
+.product{font-family:Cinzel,Georgia,serif;font-size:24px;line-height:1.1;margin:0;font-weight:600;color:var(--deep)}
+.product-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.navstrip{background:var(--deep)}
+nav{display:flex;gap:4px;padding:8px 0;align-items:center;flex-wrap:wrap}
+nav a,.dropbtn{color:#fff;text-decoration:none;font-size:14px;font-weight:500;padding:8px 12px;border-radius:6px;background:none;border:0;cursor:pointer;font-family:inherit}
+nav a:hover,.dropbtn:hover{background:rgba(255,255,255,.12)}
+nav a.active{background:rgba(255,255,255,.18);font-weight:600}
+.dropdown{position:relative}
+.menu{display:none;position:absolute;left:0;top:100%;min-width:340px;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(2,37,83,.18);padding:8px;z-index:1000}
+.dropdown.open .menu{display:block}
+.menu a{display:flex;justify-content:space-between;gap:16px;color:var(--ink);padding:10px 12px;border-radius:8px}
+.menu a:hover{background:var(--card)}
+.menu .st{font-size:12px;color:var(--muted);white-space:nowrap}
+.menu .st.live{color:var(--crimson);font-weight:600}
+h1.page-title{font-family:Cinzel,Georgia,serif;font-size:30px;line-height:1.2;margin:28px 0 4px;font-weight:600;color:var(--deep)}
+h2{font-family:Cinzel,Georgia,serif;font-size:21px;margin:30px 0 8px;color:var(--deep)}
+h3{font-size:16px;margin:18px 0 6px}
+.sub{color:var(--muted);font-size:.92em;margin-bottom:16px}
+.rule{width:64px;height:4px;background:var(--crimson);border:0;margin:0 0 16px}
+.hero{background:var(--deep);color:#fff;border-radius:12px;padding:22px 26px;margin:18px 0}
+.hero .v{font-size:2.6em;font-weight:700;line-height:1.1}
+.hero .l{font-size:.98em;opacity:.92;margin-top:4px}
+.hero .prog{font-size:.86em;opacity:.85;margin-top:10px;line-height:1.6}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.statgrid.six{grid-template-columns:repeat(3,1fr)}
+.svgwrap{overflow-x:auto}.svgwrap svg{display:block}
+.statcard{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fff}
+.statcard .k{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.statcard .v{font-size:1.7em;font-weight:700;margin-top:2px}
+.statcard .v .pct{font-size:.58em;font-weight:600;color:var(--muted)}
+.statcard .d{font-size:13px;color:var(--muted);margin-top:2px}
+.cdrow{display:flex;justify-content:space-between;gap:10px;padding:2px 8px;border-radius:4px;font-size:14px}
+.cdrow.sel{background:#eef2f8;outline:1px solid #c9d6e8}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.86em;margin:14px 0}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:right}
+th{background:#eef2f8;color:var(--deep);cursor:pointer;user-select:none}th.nosort{cursor:default}
+td:first-child,th:first-child{text-align:left}
+tr:hover td{background:#f7f9fc}
+tr.statewide td{background:#eef2f8;font-weight:600}
+.delta{color:#2e7d4f}.neg{color:var(--crimson)}.small{font-size:.85em;color:var(--muted)}
+.foot{font-size:.84em;color:#444;background:#fff;border-left:4px solid var(--crimson);padding:10px 14px;margin:14px 0;line-height:1.6}
+.tag{display:inline-block;font-size:.78em;font-weight:600;border-radius:4px;padding:1px 6px;margin-right:4px}
+.tag.flip{background:#fde8e8;color:#8c1d1d}.tag.close{background:#fff3cd;color:#7a5b00}
+.tag.change{background:#e2ecff;color:#1d3f8c}.tag.could{background:#e6f4ea;color:#1e6b34}
+.tag.expected{background:#1e6b34;color:#fff}
+.tag.final{background:#e6f4ea;color:#1e6b34}
+.filters{margin:10px 0;font-size:.92em}.filters select,.filters input{font-size:.95em;padding:4px 6px;margin-right:10px}
+.hist{font-size:.82em;color:#555;background:#f4f6f8;padding:8px 10px}
+.hist td{border:none;text-align:right;padding:2px 6px}
+button.exp{background:none;border:none;color:var(--navy);cursor:pointer;font-size:1em;padding:0}
+.charts{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;margin:10px 0}
+.chartbox{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.chartbox h3{margin:0 0 8px;font-size:1em}
+.legend{font-size:.86em;line-height:1.75}
+.sw{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.take{font-size:.92em;color:#333;background:#fff;border-left:4px solid var(--navy);padding:8px 12px;margin:10px 0}
+.map{position:relative;height:520px;border:1px solid var(--line);border-radius:10px;margin:12px 0;z-index:1}
+.map-sm{height:420px}
+.map-votes{max-width:560px;height:680px;margin:12px auto}
+.map-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#666;background:#f4f6f8;font-size:14px;z-index:500;pointer-events:none;border-radius:10px}
+.chart-tip{position:fixed;display:none;pointer-events:none;background:#1b2432;color:#fff;padding:6px 10px;border-radius:6px;font-size:13px;line-height:1.4;z-index:1000;max-width:340px;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+.map-legend{font-size:13px;color:var(--muted);margin:4px 0 14px}
+.map-legend .sw{width:14px;height:14px}
+.tabs{display:flex;gap:6px;margin:12px 0 0}
+.tabs button{font-family:inherit;font-size:14px;font-weight:600;padding:8px 16px;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:#f4f6f8;color:var(--muted);cursor:pointer}
+.tabs button.on{background:#fff;color:var(--deep);border-bottom:1px solid #fff;margin-bottom:-1px}
+footer{background:var(--deep);color:rgba(255,255,255,.75);padding:28px 0;font-size:13.5px;margin-top:40px;line-height:1.6}
+footer a{color:#fff}
+footer .meth{max-width:1180px;margin:0 auto;padding:0 20px 12px}
+@media(max-width:820px){.statgrid{grid-template-columns:1fr 1fr}.statgrid.six{grid-template-columns:1fr 1fr}.logo{height:52px}.product{font-size:20px}.menu{min-width:280px}}
+@media(max-width:560px){.statgrid{grid-template-columns:1fr}.statgrid.six{grid-template-columns:1fr}.map-votes{height:520px}}
+</style><script>
+let sortCol=-1, sortAsc=true;
+function sortTable(id, col, numeric){
+  const t=document.getElementById(id), tb=t.tBodies[0];
+  const rows=[...tb.querySelectorAll('tr.data')];
+  if(sortCol===col){sortAsc=!sortAsc}else{sortCol=col;sortAsc=true}
+  rows.sort((a,b)=>{
+    let x=a.cells[col].dataset.v ?? a.cells[col].textContent.trim();
+    let y=b.cells[col].dataset.v ?? b.cells[col].textContent.trim();
+    if(numeric){x=parseFloat(x);y=parseFloat(y);if(isNaN(x))x=-1;if(isNaN(y))y=-1}
+    return (x<y?-1:x>y?1:0)*(sortAsc?1:-1);
+  });
+  rows.forEach(r=>tb.appendChild(r));
+  rows.forEach(r=>{
+    const h=document.getElementById('hist-'+r.dataset.k);
+    if(h) tb.appendChild(h);
+  });
+}
+</script></head><body><header><div class="wrap topbar"><a href="/"><img class="logo" src="logo.png" alt="Tactical Campaigns" width="600" height="288"></a><span class="vdiv" aria-hidden="true"></span><div><h1 class="product">Tactical Data</h1><div class="product-sub">Utah Ballot Count Tracker &middot; 2026 General Election</div></div></div><div class="navstrip"><div class="wrap"><nav><div class="dropdown" id="dashDrop"><button class="dropbtn" aria-haspopup="true" aria-expanded="false">Dashboards &#9662;</button><div class="menu"><a href="/#early-vote"><span>Utah Early Vote Dashboard</span><span class="st">Coming soon</span></a><a href="/#mail-map"><span>Utah Precinct Mail Map</span><span class="st">Coming soon</span></a><a href="/#race-monitor"><span>Utah Race Monitor</span><span class="st">Coming soon</span></a><a href="/utah-ballot-tracker/"><span>Utah Ballot Count Tracker</span><span class="st live">Live</span></a><a href="/utah-influence-mapper/"><span>Utah Influence Mapper</span><span class="st live">Live</span></a></div></div><a href="index.html">Overview</a><a href="counties.html">Counties</a><a href="districts.html">Districts</a><a href="races.html">Races</a><a href="congress.html">Congress</a><a href="votes.html">Votes</a><a href="canvass.html" class="active">Canvass</a></nav></div></div></header><main class="wrap">
+<h1 class="page-title">Canvass</h1>
+<hr class="rule">
+<div class="sub">Canvass statistics from the counties&rsquo; Standardized Canvass Statistics Reports &mdash; the official reconciliation of ballots counted, vote histories, provisionals, and rejections. Canvass figures are the authoritative final numbers for canvassed counties. Data as of Tue Nov 17, 2026, 2:35 PM MST.</div>
+<div class="foot"><b>Partial data &mdash; 18 of 29 counties have posted their canvass.</b> Counties posted: Beaver, Box Elder, Cache, Carbon, Davis, Duchesne, Emery, Garfield, Iron, Juab, Kane, Millard, Piute, Rich, Sevier, Utah, Wayne, Weber. Statewide sums below cover the 17 parsed counties. Cache County has posted, but its standardized statistics file could not be read (the state&rsquo;s CDN blocks it), so its figures are <b>not</b> in the sums below &mdash; for context, it reported <b>42,549 counted</b> and <b>42,942 received</b> in its Ballot Statistics report. The canvass completes Nov 23, 2026, when all counties will have posted.</div>
+<div class="filters">
+<label>County <select id="f-county"></select></label>
+<span id="f-summary" class="small"></span></div>
+<div class="statgrid">
+<div class="statcard"><div class="k" id="box-canv-k">Counties canvassed</div><div class="v" id="box-canv-v">&mdash;</div><div class="d" id="box-canv-d"></div></div>
+<div class="statcard"><div class="k">Ballots counted</div><div class="v" id="box-counted-v">&mdash;</div><div class="d" id="box-counted-d"></div></div>
+<div class="statcard"><div class="k">Turnout</div><div class="v" id="box-turn-v">&mdash;</div><div class="d" id="box-turn-d"></div></div>
+<div class="statcard"><div class="k">Vote histories given</div><div class="v" id="box-hist-v">&mdash;</div><div class="d" id="box-hist-d"></div></div>
+<div class="statcard"><div class="k">Provisionals</div><div class="v" id="box-prov-v">&mdash;</div><div class="d" id="box-prov-d"></div></div>
+<div class="statcard"><div class="k">Challenged curable ballots</div><div class="v" id="box-cur-v">&mdash;</div><div class="d" id="box-cur-d"></div></div>
+<div class="statcard"><div class="k">Total rejected</div><div class="v" id="box-rej-v">&mdash;</div><div class="d" id="box-rej-d"></div></div>
+<div class="statcard"><div class="k">Derived total received</div><div class="v" id="box-recv-v">&mdash;</div><div class="d" id="box-recv-d"></div></div>
+</div>
+<div class="foot" id="county-note" style="display:none"></div>
+<h2>Per-county canvass figures</h2>
+<div class="small">Click a column header to sort. The county filter above narrows this table to one county. &ldquo;Hist. diff&rdquo; is vote histories minus ballots counted; a non-zero value is normal and each county&rsquo;s explanation is shown when it is selected.</div>
+<table id="canv"><thead><tr>
+<th onclick="sortTable('canv',0,false)">County</th>
+<th onclick="sortTable('canv',1,true)">Active voters</th>
+<th onclick="sortTable('canv',2,true)">Turnout</th>
+<th onclick="sortTable('canv',3,true)">Counted</th>
+<th onclick="sortTable('canv',4,true)">Mail</th>
+<th onclick="sortTable('canv',5,true)">Early</th>
+<th onclick="sortTable('canv',6,true)">Election day</th>
+<th onclick="sortTable('canv',7,true)">Prov. counted</th>
+<th onclick="sortTable('canv',8,true)">Vote histories</th>
+<th onclick="sortTable('canv',9,true)">Hist. diff</th>
+<th onclick="sortTable('canv',10,true)">Prov. issued</th>
+<th onclick="sortTable('canv',11,true)">Prov. %</th>
+<th onclick="sortTable('canv',12,true)">Curable chall.</th>
+<th onclick="sortTable('canv',13,true)">Not cured</th>
+<th onclick="sortTable('canv',14,true)">Rejected</th>
+<th onclick="sortTable('canv',15,true)">Derived received</th>
+<th class="nosort">Notes</th>
+</tr></thead><tbody>
+<tr class="data" data-county="Beaver County"><td><b>Beaver County</b></td><td data-v="3847">3,847</td><td data-v="0.5505588770470496">55.06%</td><td data-v="2118">2,118</td><td data-v="2050">2,050</td><td data-v="9">9</td><td data-v="34">34</td><td data-v="18">18</td><td data-v="2118">2,118</td><td data-v="0">+0</td><td data-v="18">18</td><td data-v="1">100.00%</td><td data-v="63">63</td><td data-v="63">63</td><td data-v="68">68</td><td data-v="2186">2,186</td><td>—</td></tr><tr class="data" data-county="Box Elder County"><td><b>Box Elder County</b></td><td data-v="33799">33,799</td><td data-v="0.5990413917571525">59.90%</td><td data-v="20247">20,247</td><td data-v="18178">18,178</td><td data-v="144">144</td><td data-v="1691">1,691</td><td data-v="196">196</td><td data-v="20249">20,249</td><td data-v="2">+2</td><td data-v="207">207</td><td data-v="0.9468599033816425">94.69%</td><td data-v="325">325</td><td data-v="105">105</td><td data-v="159">159</td><td data-v="20406">20,406</td><td>—</td></tr><tr class="data" data-county="Carbon County"><td><b>Carbon County</b></td><td data-v="10896">10,896</td><td data-v="0.6247246696035242">62.47%</td><td data-v="6807">6,807</td><td data-v="5420">5,420</td><td data-v="420">420</td><td data-v="855">855</td><td data-v="100">100</td><td data-v="6807">6,807</td><td data-v="0">+0</td><td data-v="123">123</td><td data-v="0.8130081300813008">81.30%</td><td data-v="73">73</td><td data-v="30">30</td><td data-v="70">70</td><td data-v="6877">6,877</td><td>—</td></tr><tr class="data" data-county="Davis County"><td><b>Davis County</b></td><td data-v="200115">200,115</td><td data-v="0.590690353">59.07%</td><td data-v="118206">118,206</td><td data-v="108565">108,565</td><td data-v="685">685</td><td data-v="7489">7,489</td><td data-v="1201">1,201</td><td data-v="118213">118,213</td><td data-v="7">+7</td><td data-v="1424">1,424</td><td data-v="0.8433988764">84.34%</td><td data-v="4868">4,868</td><td data-v="2044">2,044</td><td data-v="2721">2,721</td><td data-v="120927">120,927</td><td>—</td></tr><tr class="data" data-county="Duchesne County"><td><b>Duchesne County</b></td><td data-v="10440">10,440</td><td data-v="0.5112068965517241">51.12%</td><td data-v="5337">5,337</td><td data-v="4989">4,989</td><td data-v="49">49</td><td data-v="270">270</td><td data-v="27">27</td><td data-v="5337">5,337</td><td data-v="0">+0</td><td data-v="33">33</td><td data-v="0.8181818181818182">81.82%</td><td data-v="115">115</td><td data-v="55">55</td><td data-v="77">77</td><td data-v="5414">5,414</td><td>—</td></tr><tr class="data" data-county="Emery County"><td><b>Emery County</b></td><td data-v="5755">5,755</td><td data-v="0.5148566463944396">51.49%</td><td data-v="2963">2,963</td><td data-v="2948">2,948</td><td data-v="0">0</td><td data-v="0">0</td><td data-v="8">8</td><td data-v="2963">2,963</td><td data-v="0">+0</td><td data-v="9">9</td><td data-v="0.8888888888888888">88.89%</td><td data-v="13">13</td><td data-v="9">9</td><td data-v="30">30</td><td data-v="2993">2,993</td><td>—</td></tr><tr class="data" data-county="Garfield County"><td><b>Garfield County</b> ⚠</td><td data-v="3250">3,250</td><td data-v="0.6338">63.38%</td><td data-v="2060">2,060</td><td data-v="2051">2,051</td><td data-v="0">0</td><td data-v="5">5</td><td data-v="4">4</td><td data-v="2060">2,060</td><td data-v="0">+0</td><td data-v="5">5</td><td data-v="0.8">80.00%</td><td data-v="38">38</td><td data-v="8">8</td><td data-v="19">19</td><td data-v="2079">2,079</td><td>⚠ 3 verification flag(s) — see notes</td></tr><tr class="data" data-county="Iron County"><td><b>Iron County</b></td><td data-v="32827">32,827</td><td data-v="0.5477807902031864">54.78%</td><td data-v="17982">17,982</td><td data-v="16285">16,285</td><td data-v="98">98</td><td data-v="1251">1,251</td><td data-v="326">326</td><td data-v="17982">17,982</td><td data-v="0">+0</td><td data-v="383">383</td><td data-v="0.8511749347258486">85.12%</td><td data-v="261">261</td><td data-v="171">171</td><td data-v="280">280</td><td data-v="18262">18,262</td><td>—</td></tr><tr class="data" data-county="Juab County"><td><b>Juab County</b></td><td data-v="7677">7,677</td><td data-v="0.49628761234857366">49.63%</td><td data-v="3810">3,810</td><td data-v="3547">3,547</td><td data-v="58">58</td><td data-v="177">177</td><td data-v="27">27</td><td data-v="3810">3,810</td><td data-v="0">+0</td><td data-v="28">28</td><td data-v="0.9642857142857143">96.43%</td><td data-v="57">57</td><td data-v="15">15</td><td data-v="38">38</td><td data-v="3848">3,848</td><td>—</td></tr><tr class="data" data-county="Kane County"><td><b>Kane County</b></td><td data-v="5112">5,112</td><td data-v="0.6641236306729265">66.41%</td><td data-v="3395">3,395</td><td data-v="2968">2,968</td><td data-v="90">90</td><td data-v="303">303</td><td data-v="26">26</td><td data-v="3395">3,395</td><td data-v="0">+0</td><td data-v="26">26</td><td data-v="1">100.00%</td><td data-v="64">64</td><td data-v="30">30</td><td data-v="43">43</td><td data-v="3438">3,438</td><td>—</td></tr><tr class="data" data-county="Millard County"><td><b>Millard County</b></td><td data-v="7264">7,264</td><td data-v="0.5711729074889867">57.12%</td><td data-v="4149">4,149</td><td data-v="3962">3,962</td><td data-v="23">23</td><td data-v="142">142</td><td data-v="18">18</td><td data-v="4149">4,149</td><td data-v="0">+0</td><td data-v="20">20</td><td data-v="0.9">90.00%</td><td data-v="85">85</td><td data-v="52">52</td><td data-v="69">69</td><td data-v="4218">4,218</td><td>—</td></tr><tr class="data" data-county="Piute County"><td><b>Piute County</b></td><td data-v="1112">1,112</td><td data-v="0.6627697841726619">66.28%</td><td data-v="737">737</td><td data-v="683">683</td><td data-v="11">11</td><td data-v="43">43</td><td data-v="0">0</td><td data-v="737">737</td><td data-v="0">+0</td><td data-v="0">0</td><td data-v="">—</td><td data-v="0">0</td><td data-v="0">0</td><td data-v="9">9</td><td data-v="746">746</td><td>—</td></tr><tr class="data" data-county="Rich County"><td><b>Rich County</b></td><td data-v="1590">1,590</td><td data-v="0.7981132075471699">79.81%</td><td data-v="1269">1,269</td><td data-v="1206">1,206</td><td data-v="11">11</td><td data-v="41">41</td><td data-v="9">9</td><td data-v="1269">1,269</td><td data-v="0">+0</td><td data-v="10">10</td><td data-v="0.9">90.00%</td><td data-v="2">2</td><td data-v="1">1</td><td data-v="12">12</td><td data-v="1281">1,281</td><td>—</td></tr><tr class="data" data-county="Sevier County"><td><b>Sevier County</b></td><td data-v="12498">12,498</td><td data-v="0.519283085293647">51.93%</td><td data-v="6490">6,490</td><td data-v="5855">5,855</td><td data-v="49">49</td><td data-v="546">546</td><td data-v="32">32</td><td data-v="6490">6,490</td><td data-v="0">+0</td><td data-v="32">32</td><td data-v="1">100.00%</td><td data-v="265">265</td><td data-v="54">54</td><td data-v="76">76</td><td data-v="6566">6,566</td><td>—</td></tr><tr class="data" data-county="Utah County"><td><b>Utah County</b></td><td data-v="374971">374,971</td><td data-v="0.5193388288694326">51.93%</td><td data-v="194737">194,737</td><td data-v="179787">179,787</td><td data-v="1249">1,249</td><td data-v="10411">10,411</td><td data-v="2777">2,777</td><td data-v="194747">194,747</td><td data-v="10">+10</td><td data-v="3436">3,436</td><td data-v="0.8082072176949942">80.82%</td><td data-v="3990">3,990</td><td data-v="1842">1,842</td><td data-v="2930">2,930</td><td data-v="197667">197,667</td><td>—</td></tr><tr class="data" data-county="Wayne County"><td><b>Wayne County</b></td><td data-v="1827">1,827</td><td data-v="0.666">66.60%</td><td data-v="1216">1,216</td><td data-v="1178">1,178</td><td data-v="6">6</td><td data-v="28">28</td><td data-v="4">4</td><td data-v="1216">1,216</td><td data-v="0">+0</td><td data-v="4">4</td><td data-v="1.0">100.00%</td><td data-v="38">38</td><td data-v="6">6</td><td data-v="11">11</td><td data-v="1227">1,227</td><td>Transcribed from scanned PDF</td></tr><tr class="data" data-county="Weber County"><td><b>Weber County</b></td><td data-v="133164">133,164</td><td data-v="0.5954912739178757">59.55%</td><td data-v="79298">79,298</td><td data-v="74016">74,016</td><td data-v="870">870</td><td data-v="2903">2,903</td><td data-v="1276">1,276</td><td data-v="79294">79,294</td><td data-v="-4">-4</td><td data-v="1348">1,348</td><td data-v="0.9465875370919882">94.66%</td><td data-v="1097">1,097</td><td data-v="407">407</td><td data-v="612">612</td><td data-v="79910">79,910</td><td>—</td></tr><tr class="data" data-county="Cache County"><td><b>Cache County</b></td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td data-v="">—</td><td>Posted — statistics file unreadable (state CDN blocked); known counted 42,549 / received 42,942, not in totals</td></tr>
+</tbody></table>
+<div class="foot"><b>Vote-history reconciliation — counties whose histories differ from counted ballots.</b><ul style="margin:6px 0 0;padding-left:18px"><li><b>Box Elder (+2):</b> 1 envelope conatined a Cache County ballot and 1 envelope contained a ballot from 2025</li><li><b>Davis (+7):</b> 7 voters were checked in on election day, but did not cast a ballot (fleeing voters)</li><li><b>Utah (+10):</b> 10 Fleeing Voter at Vote Centers</li><li><b>Weber (-4):</b> Undetermined, after verifying the individual ballots and envelopes in the following areas: remakes, provisionals, challenged/cures, scanning logs, adjudications, write-in review, spoiled ballots, in-person vote history.</li></ul></div><div class="foot"><b>Verification flags &amp; adjustments.</b><ul style="margin:6px 0 0;padding-left:18px"><li><b>Garfield:</b> non-numeric value &#x27;X&#x27; in &#x27;insufficient id&#x27; (count not stated)</li><li><b>Garfield:</b> non-numeric value &#x27;X&#x27; in &#x27;residency&#x27; (count not stated)</li><li><b>Garfield:</b> non-curable reasons sum 10 != non-curable total 0 (derived totals use the reason-row sum; see adjustments)</li><li><b>Garfield adjustment:</b> rejected_noncureable reported 0, effective 10 — category total cell reads 0 but its reason rows sum to 10; derived totals use the reason-row sum.</li></ul></div>
+<div class="foot"><b>Wayne County — transcribed from a scanned PDF.</b> Manual transcription of the printed Standardized Canvass Statistics Report on page 29 of Wayne County&#x27;s 32-page scanned canvass packet (&#x27;Canvas 2026 General Election&#x27;, uploaded to the state reports page 2026-11-17T15:55:41 UTC), read visually Nov 17, 2026. Blank cells transcribed as null. The packet&#x27;s page 32 is the Board of Canvassers certification (meeting Nov 16, 2026, 10:00 AM; certified by Clerk/Auditor Felicia Snow). Components check: 1,178 mail + 6 early + 28 election day + 4 provisional = 1,216 counted exactly; curable reasons 6 = not-cured total 6; non-curable 5 = total 5; turnout 1,216/1,827 = 66.56% (printed 66.6%).</div>
+<div class="foot"><b>Sources &amp; method.</b> Each county&rsquo;s Standardized Canvass Statistics Report as posted to the state reports page (General11032026), parsed from the county&rsquo;s .xlsx filing except Wayne County, transcribed from its scanned canvass packet. Vote-history figures are VISTA data as reported by each county on its canvass form. &ldquo;Derived total received&rdquo; = ballots counted + total rejected; &ldquo;total rejected&rdquo; = curable ballots not cured + non-curable rejections + provisionals not counted. sums across the 17 parsed counties only; excludes Cache County (posted but unparseable) and all unposted counties. Canvass figures are the authoritative final numbers for canvassed counties.</div>
+<script>
+const CANVASS = {"generated": "2026-11-17T21:35:29.859224+00:00", "source": "Utah state reports page, category 'Canvass - Standardized Statistics (.xlsx)', General11032026. Per-county rows parsed from county-canvass/*_stats.xlsx (or a manual transcription sidecar for scanned forms); upload timestamps from county-canvass/manifest.json (state API listing).", "posted_count": 18, "posted_total": 29, "posted_counties": ["Beaver County", "Box Elder County", "Cache County", "Carbon County", "Davis County", "Duchesne County", "Emery County", "Garfield County", "Iron County", "Juab County", "Kane County", "Millard County", "Piute County", "Rich County", "Sevier County", "Utah County", "Wayne County", "Weber County"], "parsed_count": 17, "unparseable": [{"county": "Cache County", "file": "Cache_stats.xlsx", "source": "blocked", "reason": "local file is not a readable spreadsheet (BadZipFile: File is not a zip file). The state's CDN returns HTTP 403 for this county's stats file.", "stats_upload": "2026-11-10T23:46:31.7701289", "known_counted": 42549, "known_received": 42942}], "statewide": {"active_voters": 846144, "counted_total": 470821, "counted_mail": 433688, "counted_early_in_person": 3772, "counted_election_day": 26189, "counted_disability_electronic": 30, "counted_uocava_electronic": 1088, "counted_provisional": 6049, "counted_emergency": 5, "vote_histories": 470836, "prov_issued": 7106, "prov_counted": 6049, "prov_not_counted": 1057, "prov_already_voted": 34, "prov_insufficient_id": 111, "prov_residency": 738, "prov_incomplete_form": 117, "prov_other": 56, "prov_same_day_reg": 2941, "challenged_curable": 11354, "rejected_curable_not_cured": 4892, "curable_sig_mismatch": 3306, "curable_unsigned": 490, "curable_other": 1096, "disability_affidavits": 230, "rejected_noncureable": 1275, "noncureable_late": 1114, "noncureable_other": 161, "rejected_total": 7224, "derived_received": 478045, "turnout": 0.5564312930186824, "prov_pct_counted": 0.851252462707571, "pct_curable_not_cured": 0.4308613704421349, "pct_undeliverable": 0.020974061479840534, "pct_undeliverable_note": "counted-ballot-weighted average of county rates (no count denominator in the form)"}, "statewide_scope": "sums across the 17 parsed counties only; excludes Cache County (posted but unparseable) and all unposted counties.", "verification": {"counties_with_flags": ["Garfield County"], "flags": [{"county": "Garfield County", "flag": "non-numeric value 'X' in 'insufficient id' (count not stated)"}, {"county": "Garfield County", "flag": "non-numeric value 'X' in 'residency' (count not stated)"}, {"county": "Garfield County", "flag": "non-curable reasons sum 10 != non-curable total 0 (derived totals use the reason-row sum; see adjustments)"}]}, "counties": [{"county": "Beaver County", "source": "xlsx", "file": "Beaver_stats.xlsx", "stats_upload": "2026-11-17T18:41:33.4504189", "fields": {"turnout": 0.5505588770470496, "active_voters": 3847, "counted_total": 2118, "counted_mail": 2050, "counted_early_in_person": 9, "counted_election_day": 34, "counted_disability_electronic": 0, "counted_uocava_electronic": 6, "counted_provisional": 18, "counted_emergency": 1, "vote_histories": 2118, "histories_match": "Yes", "histories_difference": null, "prov_issued": 18, "prov_counted": 18, "prov_not_counted": 0, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": null, "prov_incomplete_form": null, "prov_other": null, "prov_pct_counted": 1, "prov_same_day_reg": 6, "challenged_curable": 63, "rejected_curable_not_cured": 63, "curable_sig_mismatch": 14, "curable_unsigned": 31, "curable_other": 18, "pct_curable_not_cured": 1, "disability_affidavits": 0, "rejected_noncureable": 5, "noncureable_late": 5, "noncureable_other": 0, "pct_undeliverable": 0.016, "histories_explanation": null, "certifier": "Ginger McMullin", "rejected_total": 68, "derived_received": 2186}, "adjustments": [], "verification_flags": []}, {"county": "Box Elder County", "source": "xlsx", "file": "Box_Elder_stats.xlsx", "stats_upload": "2026-11-17T19:31:12.207463", "fields": {"turnout": 0.5990413917571525, "active_voters": 33799, "counted_total": 20247, "counted_mail": 18178, "counted_early_in_person": 144, "counted_election_day": 1691, "counted_disability_electronic": 0, "counted_uocava_electronic": 38, "counted_provisional": 196, "counted_emergency": 0, "vote_histories": 20249, "histories_match": "No", "histories_difference": 2, "prov_issued": 207, "prov_counted": 196, "prov_not_counted": 11, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": 9, "prov_incomplete_form": 2, "prov_other": null, "prov_pct_counted": 0.9468599033816425, "prov_same_day_reg": 162, "challenged_curable": 325, "rejected_curable_not_cured": 105, "curable_sig_mismatch": 38, "curable_unsigned": 37, "curable_other": 30, "pct_curable_not_cured": 0.3230769230769231, "disability_affidavits": 0, "rejected_noncureable": 43, "noncureable_late": 41, "noncureable_other": 2, "pct_undeliverable": 0.02, "histories_explanation": "1 envelope conatined a Cache County ballot and 1 envelope contained a ballot from 2025", "certifier": "Marla R Young", "rejected_total": 159, "derived_received": 20406}, "adjustments": [], "verification_flags": []}, {"county": "Carbon County", "source": "xlsx", "file": "Carbon_stats.xlsx", "stats_upload": "2026-11-16T22:29:11.1490015", "fields": {"turnout": 0.6247246696035242, "active_voters": 10896, "counted_total": 6807, "counted_mail": 5420, "counted_early_in_person": 420, "counted_election_day": 855, "counted_disability_electronic": null, "counted_uocava_electronic": 12, "counted_provisional": 100, "counted_emergency": null, "vote_histories": 6807, "histories_match": "Yes", "histories_difference": null, "prov_issued": 123, "prov_counted": 100, "prov_not_counted": 23, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": 23, "prov_incomplete_form": null, "prov_other": null, "prov_pct_counted": 0.8130081300813008, "prov_same_day_reg": 46, "challenged_curable": 73, "rejected_curable_not_cured": 30, "curable_sig_mismatch": null, "curable_unsigned": 2, "curable_other": 28, "pct_curable_not_cured": 0.410958904109589, "disability_affidavits": null, "rejected_noncureable": 17, "noncureable_late": 17, "noncureable_other": null, "pct_undeliverable": 0.023, "histories_explanation": null, "certifier": "Seth Marsing", "rejected_total": 70, "derived_received": 6877}, "adjustments": [], "verification_flags": []}, {"county": "Davis County", "source": "xlsx", "file": "Davis_stats.xlsx", "stats_upload": "2026-11-17T19:41:14.0002457", "fields": {"turnout": 0.590690353, "active_voters": 200115, "counted_total": 118206, "counted_mail": 108565, "counted_early_in_person": 685, "counted_election_day": 7489, "counted_disability_electronic": 4, "counted_uocava_electronic": 261, "counted_provisional": 1201, "counted_emergency": 1, "vote_histories": 118213, "histories_match": "No", "histories_difference": 7, "prov_issued": 1424, "prov_counted": 1201, "prov_not_counted": 223, "prov_already_voted": 13, "prov_insufficient_id": 7, "prov_residency": 196, "prov_incomplete_form": 0, "prov_other": 7, "prov_pct_counted": 0.8433988764, "prov_same_day_reg": 647, "challenged_curable": 4868, "rejected_curable_not_cured": 2044, "curable_sig_mismatch": 1680, "curable_unsigned": 48, "curable_other": 316, "pct_curable_not_cured": 0.419884963, "disability_affidavits": 149, "rejected_noncureable": 454, "noncureable_late": 418, "noncureable_other": 36, "pct_undeliverable": 0.015, "histories_explanation": "7 voters were checked in on election day, but did not cast a ballot (fleeing voters)", "certifier": "Brian McKenzie", "rejected_total": 2721, "derived_received": 120927}, "adjustments": [], "verification_flags": []}, {"county": "Duchesne County", "source": "xlsx", "file": "Duchesne_stats.xlsx", "stats_upload": "2026-11-16T22:10:50.183419", "fields": {"turnout": 0.5112068965517241, "active_voters": 10440, "counted_total": 5337, "counted_mail": 4989, "counted_early_in_person": 49, "counted_election_day": 270, "counted_disability_electronic": 0, "counted_uocava_electronic": 2, "counted_provisional": 27, "counted_emergency": 0, "vote_histories": 5337, "histories_match": "Yes", "histories_difference": null, "prov_issued": 33, "prov_counted": 27, "prov_not_counted": 6, "prov_already_voted": 0, "prov_insufficient_id": 3, "prov_residency": 3, "prov_incomplete_form": 0, "prov_other": 0, "prov_pct_counted": 0.8181818181818182, "prov_same_day_reg": 8, "challenged_curable": 115, "rejected_curable_not_cured": 55, "curable_sig_mismatch": 34, "curable_unsigned": 8, "curable_other": 13, "pct_curable_not_cured": 0.4782608695652174, "disability_affidavits": 0, "rejected_noncureable": 16, "noncureable_late": 16, "noncureable_other": 0, "pct_undeliverable": 0.0586, "histories_explanation": null, "certifier": "Chelise Curtis", "rejected_total": 77, "derived_received": 5414}, "adjustments": [], "verification_flags": []}, {"county": "Emery County", "source": "xlsx", "file": "Emery_stats.xlsx", "stats_upload": "2026-11-10T23:21:39.7770637", "fields": {"turnout": 0.5148566463944396, "active_voters": 5755, "counted_total": 2963, "counted_mail": 2948, "counted_early_in_person": 0, "counted_election_day": 0, "counted_disability_electronic": 0, "counted_uocava_electronic": 7, "counted_provisional": 8, "counted_emergency": 0, "vote_histories": 2963, "histories_match": "Yes", "histories_difference": null, "prov_issued": 9, "prov_counted": 8, "prov_not_counted": 1, "prov_already_voted": 0, "prov_insufficient_id": 0, "prov_residency": 1, "prov_incomplete_form": 0, "prov_other": 0, "prov_pct_counted": 0.8888888888888888, "prov_same_day_reg": 9, "challenged_curable": 13, "rejected_curable_not_cured": 9, "curable_sig_mismatch": 1, "curable_unsigned": 6, "curable_other": 2, "pct_curable_not_cured": 0.6923076923076923, "disability_affidavits": 0, "rejected_noncureable": 20, "noncureable_late": 18, "noncureable_other": 2, "pct_undeliverable": 0.02, "histories_explanation": null, "certifier": "Brenda Tuttle", "rejected_total": 30, "derived_received": 2993}, "adjustments": [], "verification_flags": []}, {"county": "Garfield County", "source": "xlsx", "file": "Garfield_stats.xlsx", "stats_upload": "2026-11-13T00:06:13.9800034", "fields": {"turnout": 0.6338, "active_voters": 3250, "counted_total": 2060, "counted_mail": 2051, "counted_early_in_person": 0, "counted_election_day": 5, "counted_disability_electronic": 0, "counted_uocava_electronic": 0, "counted_provisional": 4, "counted_emergency": null, "vote_histories": 2060, "histories_match": "Yes", "histories_difference": null, "prov_issued": 5, "prov_counted": 4, "prov_not_counted": 1, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": null, "prov_incomplete_form": null, "prov_other": null, "prov_pct_counted": 0.8, "prov_same_day_reg": 5, "challenged_curable": 38, "rejected_curable_not_cured": 8, "curable_sig_mismatch": 3, "curable_unsigned": 5, "curable_other": null, "pct_curable_not_cured": 0.21052631578947367, "disability_affidavits": 0, "rejected_noncureable": 0, "noncureable_late": 10, "noncureable_other": 0, "pct_undeliverable": 0.015, "histories_explanation": null, "certifier": "Camille A. Moore", "rejected_total": 19, "derived_received": 2079}, "adjustments": [{"field": "rejected_noncureable", "reported": 0, "effective": 10, "reason": "category total cell reads 0 but its reason rows sum to 10; derived totals use the reason-row sum."}], "verification_flags": ["non-numeric value 'X' in 'insufficient id' (count not stated)", "non-numeric value 'X' in 'residency' (count not stated)", "non-curable reasons sum 10 != non-curable total 0 (derived totals use the reason-row sum; see adjustments)"]}, {"county": "Iron County", "source": "xlsx", "file": "Iron_stats.xlsx", "stats_upload": "2026-11-17T19:36:05.2888355", "fields": {"turnout": 0.5477807902031864, "active_voters": 32827, "counted_total": 17982, "counted_mail": 16285, "counted_early_in_person": 98, "counted_election_day": 1251, "counted_disability_electronic": 0, "counted_uocava_electronic": 22, "counted_provisional": 326, "counted_emergency": 0, "vote_histories": 17982, "histories_match": "Yes", "histories_difference": null, "prov_issued": 383, "prov_counted": 326, "prov_not_counted": 57, "prov_already_voted": 1, "prov_insufficient_id": 9, "prov_residency": 15, "prov_incomplete_form": 2, "prov_other": 30, "prov_pct_counted": 0.8511749347258486, "prov_same_day_reg": 107, "challenged_curable": 261, "rejected_curable_not_cured": 171, "curable_sig_mismatch": 92, "curable_unsigned": 14, "curable_other": 65, "pct_curable_not_cured": 0.6551724137931034, "disability_affidavits": 4, "rejected_noncureable": 52, "noncureable_late": 51, "noncureable_other": 1, "pct_undeliverable": 0.0157, "histories_explanation": null, "certifier": "Jonathan T. Whittaker", "rejected_total": 280, "derived_received": 18262}, "adjustments": [], "verification_flags": []}, {"county": "Juab County", "source": "xlsx", "file": "Juab_stats.xlsx", "stats_upload": "2026-11-16T22:34:18.1377082", "fields": {"turnout": 0.49628761234857366, "active_voters": 7677, "counted_total": 3810, "counted_mail": 3547, "counted_early_in_person": 58, "counted_election_day": 177, "counted_disability_electronic": null, "counted_uocava_electronic": 1, "counted_provisional": 27, "counted_emergency": null, "vote_histories": 3810, "histories_match": "Yes", "histories_difference": null, "prov_issued": 28, "prov_counted": 27, "prov_not_counted": 1, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": 1, "prov_incomplete_form": null, "prov_other": null, "prov_pct_counted": 0.9642857142857143, "prov_same_day_reg": 18, "challenged_curable": 57, "rejected_curable_not_cured": 15, "curable_sig_mismatch": 8, "curable_unsigned": 4, "curable_other": 3, "pct_curable_not_cured": 0.2631578947368421, "disability_affidavits": null, "rejected_noncureable": 22, "noncureable_late": 22, "noncureable_other": null, "pct_undeliverable": 0.0134, "histories_explanation": null, "certifier": "Tanielle Callaway", "rejected_total": 38, "derived_received": 3848}, "adjustments": [], "verification_flags": []}, {"county": "Kane County", "source": "xlsx", "file": "Kane_stats.xlsx", "stats_upload": "2026-11-10T17:47:51.8862266", "fields": {"turnout": 0.6641236306729265, "active_voters": 5112, "counted_total": 3395, "counted_mail": 2968, "counted_early_in_person": 90, "counted_election_day": 303, "counted_disability_electronic": 0, "counted_uocava_electronic": 8, "counted_provisional": 26, "counted_emergency": null, "vote_histories": 3395, "histories_match": "Yes", "histories_difference": null, "prov_issued": 26, "prov_counted": 26, "prov_not_counted": 0, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": null, "prov_incomplete_form": null, "prov_other": 0, "prov_pct_counted": 1, "prov_same_day_reg": 26, "challenged_curable": 64, "rejected_curable_not_cured": 30, "curable_sig_mismatch": 1, "curable_unsigned": 16, "curable_other": 13, "pct_curable_not_cured": 0.46875, "disability_affidavits": 0, "rejected_noncureable": 13, "noncureable_late": 13, "noncureable_other": null, "pct_undeliverable": 0.02, "histories_explanation": null, "certifier": "Heather Narramore", "rejected_total": 43, "derived_received": 3438}, "adjustments": [], "verification_flags": []}, {"county": "Millard County", "source": "xlsx", "file": "Millard_stats.xlsx", "stats_upload": "2026-11-10T21:21:19.1317701", "fields": {"turnout": 0.5711729074889867, "active_voters": 7264, "counted_total": 4149, "counted_mail": 3962, "counted_early_in_person": 23, "counted_election_day": 142, "counted_disability_electronic": 0, "counted_uocava_electronic": 4, "counted_provisional": 18, "counted_emergency": 0, "vote_histories": 4149, "histories_match": "Yes", "histories_difference": null, "prov_issued": 20, "prov_counted": 18, "prov_not_counted": 2, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": 2, "prov_incomplete_form": null, "prov_other": null, "prov_pct_counted": 0.9, "prov_same_day_reg": 15, "challenged_curable": 85, "rejected_curable_not_cured": 52, "curable_sig_mismatch": 19, "curable_unsigned": 8, "curable_other": 25, "pct_curable_not_cured": 0.611764705882353, "disability_affidavits": 0, "rejected_noncureable": 15, "noncureable_late": 9, "noncureable_other": 6, "pct_undeliverable": 0.03, "histories_explanation": null, "certifier": "Marki Rowley", "rejected_total": 69, "derived_received": 4218}, "adjustments": [], "verification_flags": []}, {"county": "Piute County", "source": "xlsx", "file": "Piute_stats.xlsx", "stats_upload": "2026-11-10T16:38:17.3897858", "fields": {"turnout": 0.6627697841726619, "active_voters": 1112, "counted_total": 737, "counted_mail": 683, "counted_early_in_person": 11, "counted_election_day": 43, "counted_disability_electronic": 0, "counted_uocava_electronic": 0, "counted_provisional": 0, "counted_emergency": 0, "vote_histories": 737, "histories_match": "Yes", "histories_difference": null, "prov_issued": 0, "prov_counted": 0, "prov_not_counted": 0, "prov_already_voted": 0, "prov_insufficient_id": 0, "prov_residency": 0, "prov_incomplete_form": 0, "prov_other": 0, "prov_pct_counted": null, "prov_same_day_reg": 0, "challenged_curable": 0, "rejected_curable_not_cured": 0, "curable_sig_mismatch": 0, "curable_unsigned": 0, "curable_other": 0, "pct_curable_not_cured": null, "disability_affidavits": 0, "rejected_noncureable": 9, "noncureable_late": 9, "noncureable_other": 0, "pct_undeliverable": 0.013, "histories_explanation": null, "certifier": "Kali Gleave", "rejected_total": 9, "derived_received": 746}, "adjustments": [], "verification_flags": []}, {"county": "Rich County", "source": "xlsx", "file": "Rich_stats.xlsx", "stats_upload": "2026-11-16T21:14:00.6083013", "fields": {"turnout": 0.7981132075471699, "active_voters": 1590, "counted_total": 1269, "counted_mail": 1206, "counted_early_in_person": 11, "counted_election_day": 41, "counted_disability_electronic": 0, "counted_uocava_electronic": 2, "counted_provisional": 9, "counted_emergency": 0, "vote_histories": 1269, "histories_match": "Yes", "histories_difference": null, "prov_issued": 10, "prov_counted": 9, "prov_not_counted": 1, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": 1, "prov_incomplete_form": null, "prov_other": null, "prov_pct_counted": 0.9, "prov_same_day_reg": 6, "challenged_curable": 2, "rejected_curable_not_cured": 1, "curable_sig_mismatch": 1, "curable_unsigned": null, "curable_other": null, "pct_curable_not_cured": 0.5, "disability_affidavits": null, "rejected_noncureable": 10, "noncureable_late": 9, "noncureable_other": 1, "pct_undeliverable": 0.018, "histories_explanation": null, "certifier": "Anneliesa Peart", "rejected_total": 12, "derived_received": 1281}, "adjustments": [], "verification_flags": []}, {"county": "Sevier County", "source": "xlsx", "file": "Sevier_stats.xlsx", "stats_upload": "2026-11-16T22:11:32.2661021", "fields": {"turnout": 0.519283085293647, "active_voters": 12498, "counted_total": 6490, "counted_mail": 5855, "counted_early_in_person": 49, "counted_election_day": 546, "counted_disability_electronic": 0, "counted_uocava_electronic": 8, "counted_provisional": 32, "counted_emergency": 0, "vote_histories": 6490, "histories_match": "Yes", "histories_difference": null, "prov_issued": 32, "prov_counted": 32, "prov_not_counted": 0, "prov_already_voted": null, "prov_insufficient_id": null, "prov_residency": null, "prov_incomplete_form": null, "prov_other": null, "prov_pct_counted": 1, "prov_same_day_reg": 17, "challenged_curable": 265, "rejected_curable_not_cured": 54, "curable_sig_mismatch": 37, "curable_unsigned": 15, "curable_other": 2, "pct_curable_not_cured": 0.2037735849056604, "disability_affidavits": 9, "rejected_noncureable": 22, "noncureable_late": 17, "noncureable_other": 5, "pct_undeliverable": 0.01, "histories_explanation": null, "certifier": "Steven C. Wall, Sevier County Clerk/Auditor", "rejected_total": 76, "derived_received": 6566}, "adjustments": [], "verification_flags": []}, {"county": "Utah County", "source": "xlsx", "file": "Utah_stats.xlsx", "stats_upload": "2026-11-17T21:13:38.5834733", "fields": {"turnout": 0.5193388288694326, "active_voters": 374971, "counted_total": 194737, "counted_mail": 179787, "counted_early_in_person": 1249, "counted_election_day": 10411, "counted_disability_electronic": 20, "counted_uocava_electronic": 491, "counted_provisional": 2777, "counted_emergency": 2, "vote_histories": 194747, "histories_match": "No", "histories_difference": 10, "prov_issued": 3436, "prov_counted": 2777, "prov_not_counted": 659, "prov_already_voted": 14, "prov_insufficient_id": 89, "prov_residency": 444, "prov_incomplete_form": 97, "prov_other": 15, "prov_pct_counted": 0.8082072176949942, "prov_same_day_reg": 1238, "challenged_curable": 3990, "rejected_curable_not_cured": 1842, "curable_sig_mismatch": 1182, "curable_unsigned": 186, "curable_other": 474, "pct_curable_not_cured": 0.4616541353383459, "disability_affidavits": null, "rejected_noncureable": 429, "noncureable_late": 321, "noncureable_other": 108, "pct_undeliverable": 0.021, "histories_explanation": "10 Fleeing Voter at Vote Centers", "certifier": "Aaron R. Davidson", "rejected_total": 2930, "derived_received": 197667}, "adjustments": [], "verification_flags": []}, {"county": "Wayne County", "source": "pdf-manual", "file": "Wayne_stats.pdf", "stats_upload": "2026-11-17T15:55:41.6255784", "fields": {"active_voters": 1827, "certifier": "Felicia Snow", "challenged_curable": 38, "counted_disability_electronic": null, "counted_early_in_person": 6, "counted_election_day": 28, "counted_emergency": null, "counted_mail": 1178, "counted_provisional": 4, "counted_total": 1216, "counted_uocava_electronic": null, "curable_other": null, "curable_sig_mismatch": 6, "curable_unsigned": null, "disability_affidavits": null, "histories_difference": null, "histories_explanation": null, "histories_match": "Yes", "noncureable_late": 5, "noncureable_other": null, "pct_curable_not_cured": 0.158, "pct_undeliverable": 0.01, "prov_already_voted": null, "prov_counted": 4, "prov_incomplete_form": null, "prov_insufficient_id": null, "prov_issued": 4, "prov_not_counted": 0, "prov_other": null, "prov_pct_counted": 1.0, "prov_residency": null, "prov_same_day_reg": null, "rejected_curable_not_cured": 6, "rejected_noncureable": 5, "turnout": 0.666, "vote_histories": 1216, "rejected_total": 11, "derived_received": 1227}, "adjustments": [], "note": "Manual transcription of the printed Standardized Canvass Statistics Report on page 29 of Wayne County's 32-page scanned canvass packet ('Canvas 2026 General Election', uploaded to the state reports page 2026-11-17T15:55:41 UTC), read visually Nov 17, 2026. Blank cells transcribed as null. The packet's page 32 is the Board of Canvassers certification (meeting Nov 16, 2026, 10:00 AM; certified by Clerk/Auditor Felicia Snow). Components check: 1,178 mail + 6 early + 28 election day + 4 provisional = 1,216 counted exactly; curable reasons 6 = not-cured total 6; non-curable 5 = total 5; turnout 1,216/1,827 = 66.56% (printed 66.6%).", "verification_flags": []}, {"county": "Weber County", "source": "xlsx", "file": "Weber_stats.xlsx", "stats_upload": "2026-11-17T18:02:17.8421714", "fields": {"turnout": 0.5954912739178757, "active_voters": 133164, "counted_total": 79298, "counted_mail": 74016, "counted_early_in_person": 870, "counted_election_day": 2903, "counted_disability_electronic": 6, "counted_uocava_electronic": 226, "counted_provisional": 1276, "counted_emergency": 1, "vote_histories": 79294, "histories_match": "No", "histories_difference": -4, "prov_issued": 1348, "prov_counted": 1276, "prov_not_counted": 72, "prov_already_voted": 6, "prov_insufficient_id": 3, "prov_residency": 43, "prov_incomplete_form": 16, "prov_other": 4, "prov_pct_counted": 0.9465875370919882, "prov_same_day_reg": 631, "challenged_curable": 1097, "rejected_curable_not_cured": 407, "curable_sig_mismatch": 190, "curable_unsigned": 110, "curable_other": 107, "pct_curable_not_cured": 0.37101185050136737, "disability_affidavits": 68, "rejected_noncureable": 133, "noncureable_late": 133, "noncureable_other": null, "pct_undeliverable": 0.03, "histories_explanation": "Undetermined, after verifying the individual ballots and envelopes in the following areas: remakes, provisionals, challenged/cures, scanning logs, adjudications, write-in review, spoiled ballots, in-person vote history.", "certifier": "Ricky Hatch", "rejected_total": 612, "derived_received": 79910}, "adjustments": [], "verification_flags": []}]};
+const fmtN = n => (n==null ? '\u2014' : n.toLocaleString());
+const fmtPct2 = n => (n==null ? '\u2014' : (n*100).toFixed(2)+'%');
+const fmtSigned = n => (n==null ? '0' : (n>0 ? '+' : '')+n.toLocaleString());
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmtDate(iso){
+  if(!iso) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+  if(!m) return iso;
+  return MON[parseInt(m[2],10)-1]+' '+parseInt(m[3],10)+', '+m[1];
+}
+function countyRow(name){
+  return (CANVASS.counties||[]).find(function(c){ return c.county===name; }) || null;
+}
+function unparsedRow(name){
+  return (CANVASS.unparseable||[]).find(function(u){ return u.county===name; }) || null;
+}
+// Effective non-curable rejections: derived from the totals so the
+// Garfield adjustment (reason rows sum 10, total cell reads 0) is
+// honoured without hardcoding it.
+function effNoncureable(f){
+  if(!f) return null;
+  if(f.rejected_total!=null && f.rejected_curable_not_cured!=null && f.prov_not_counted!=null)
+    return f.rejected_total - f.rejected_curable_not_cured - f.prov_not_counted;
+  return f.rejected_noncureable;
+}
+function histDiff(f){
+  if(!f) return null;
+  if(f.histories_difference!=null) return f.histories_difference;
+  if(f.vote_histories!=null && f.counted_total!=null) return f.vote_histories - f.counted_total;
+  return null;
+}
+function countedDetail(f){
+  const parts = [];
+  if(f.counted_mail!=null) parts.push('Mail '+fmtN(f.counted_mail));
+  if(f.counted_election_day!=null) parts.push('Election day '+fmtN(f.counted_election_day));
+  if(f.counted_early_in_person!=null) parts.push('Early in-person '+fmtN(f.counted_early_in_person));
+  if(f.counted_provisional!=null) parts.push('Provisional '+fmtN(f.counted_provisional));
+  if(f.counted_uocava_electronic) parts.push('UOCAVA '+fmtN(f.counted_uocava_electronic));
+  if(f.counted_disability_electronic) parts.push('Disability '+fmtN(f.counted_disability_electronic));
+  if(f.counted_emergency) parts.push('Emergency '+fmtN(f.counted_emergency));
+  return parts.join(' \u00b7 ');
+}
+let curCounty = 'statewide';
+function buildCountySelect(){
+  const sel = document.getElementById('f-county');
+  let html = '<option value="statewide">Statewide \u2014 '+CANVASS.parsed_count+' parsed counties</option>';
+  html += '<optgroup label="Canvassed counties">';
+  CANVASS.counties.forEach(function(c){ html += '<option value="'+c.county+'">'+c.county+'</option>'; });
+  html += '</optgroup>';
+  (CANVASS.unparseable||[]).forEach(function(u){
+    html += '<option value="'+u.county+'">'+u.county+' \u2014 posted, figures unavailable</option>';
+  });
+  sel.innerHTML = html;
+}
+function setBox(id, v, d){
+  document.getElementById(id+'-v').textContent = v;
+  document.getElementById(id+'-d').textContent = d;
+}
+function renderBoxes(){
+  const un = unparsedRow(curCounty);
+  if(un){
+    document.getElementById('box-canv-k').textContent = 'Canvass status';
+    setBox('box-canv', 'Posted \u2014 unavailable', 'Statistics file could not be read (state CDN blocked)');
+    setBox('box-counted', '\u2014', 'Not in the statewide totals \u2014 see the note below.');
+    setBox('box-turn', '\u2014', 'Not in the statewide totals \u2014 see the note below.');
+    setBox('box-hist', '\u2014', 'Not in the statewide totals \u2014 see the note below.');
+    setBox('box-prov', '\u2014', 'Not in the statewide totals \u2014 see the note below.');
+    setBox('box-cur', '\u2014', 'Not in the statewide totals \u2014 see the note below.');
+    setBox('box-rej', '\u2014', 'Not in the statewide totals \u2014 see the note below.');
+    setBox('box-recv', '\u2014', 'Not in the statewide totals \u2014 see the note below.');
+    return;
+  }
+  let f, canvV, canvD;
+  if(curCounty==='statewide'){
+    f = CANVASS.statewide;
+    document.getElementById('box-canv-k').textContent = 'Counties canvassed';
+    canvV = CANVASS.posted_count+' of '+CANVASS.posted_total;
+    canvD = CANVASS.parsed_count+' parsed \u00b7 Cache County posted but unreadable \u00b7 complete after the Nov 23 canvass';
+  } else {
+    const row = countyRow(curCounty);
+    f = row ? row.fields : null;
+    document.getElementById('box-canv-k').textContent = 'Canvass status';
+    canvV = 'Canvassed';
+    canvD = row ? ('Posted '+(fmtDate(row.stats_upload)||'\u2014')+' \u00b7 certified by '+(f.certifier||'\u2014')) : '';
+  }
+  if(!f) return;
+  const d = histDiff(f);
+  setBox('box-canv', canvV, canvD);
+  setBox('box-counted', fmtN(f.counted_total), countedDetail(f));
+  setBox('box-turn', fmtPct2(f.turnout), fmtN(f.counted_total)+' counted \u00f7 '+fmtN(f.active_voters)+' active voters');
+  setBox('box-hist', fmtN(f.vote_histories),
+    'Histories \u2212 counted = '+fmtSigned(d)+(d===0 ? ' \u2014 histories match counted' : '')+
+    (curCounty==='statewide' ? ' (net across '+CANVASS.parsed_count+' parsed counties)' : ''));
+  let provD = 'of '+fmtN(f.prov_issued)+' issued \u00b7 '+fmtPct2(f.prov_pct_counted)+' counted';
+  if(f.prov_same_day_reg!=null) provD += ' \u00b7 '+fmtN(f.prov_same_day_reg)+' same-day registrations';
+  setBox('box-prov', fmtN(f.prov_counted)+' counted', provD);
+  setBox('box-cur', fmtN(f.rejected_curable_not_cured)+' not cured',
+    'of '+fmtN(f.challenged_curable)+' challenged \u00b7 '+fmtPct2(f.pct_curable_not_cured)+' not cured'+
+    ' \u00b7 signature mismatch '+fmtN(f.curable_sig_mismatch)+' \u00b7 unsigned '+fmtN(f.curable_unsigned)+' \u00b7 other '+fmtN(f.curable_other));
+  setBox('box-rej', fmtN(f.rejected_total),
+    fmtN(f.rejected_curable_not_cured)+' curable not cured + '+fmtN(effNoncureable(f))+' non-curable + '+fmtN(f.prov_not_counted)+' provisionals not counted');
+  setBox('box-recv', fmtN(f.derived_received), 'Counted + rejected ballots (derived)');
+}
+function renderCountyNote(){
+  const el = document.getElementById('county-note');
+  const un = unparsedRow(curCounty);
+  if(un){
+    el.innerHTML = '<b>'+un.county+' has posted its canvass, but its figures are unavailable here.</b> '+
+      'The county\u2019s standardized statistics file could not be read (the state\u2019s CDN returns HTTP 403 for it), '+
+      'so its figures are <b>not</b> in the statewide totals above. For context, the county reported '+
+      '<b>'+fmtN(un.known_counted)+' counted</b> and <b>'+fmtN(un.known_received)+' received</b> in its Ballot Statistics report.';
+    el.style.display = '';
+    return;
+  }
+  if(curCounty==='statewide'){ el.innerHTML=''; el.style.display='none'; return; }
+  const row = countyRow(curCounty);
+  if(!row){ el.innerHTML=''; el.style.display='none'; return; }
+  const f = row.fields;
+  const notes = [];
+  if(row.source==='pdf-manual')
+    notes.push('Figures transcribed from a scanned PDF of the county\u2019s printed canvass report \u2014 see the note below the table.');
+  (row.verification_flags||[]).forEach(function(fl){ notes.push('Verification flag: '+fl); });
+  (row.adjustments||[]).forEach(function(a){
+    notes.push('Adjustment: '+a.field+' reported '+a.reported+', effective '+a.effective+' \u2014 '+a.reason);
+  });
+  if(f.histories_explanation)
+    notes.push('Vote-history reconciliation ('+fmtSigned(histDiff(f))+'): '+f.histories_explanation);
+  if(!notes.length){ el.innerHTML=''; el.style.display='none'; return; }
+  el.innerHTML = notes.map(function(n){ return '<div>'+n+'</div>'; }).join('');
+  el.style.display = '';
+}
+function filterTable(){
+  const rows = document.querySelectorAll('#canv tbody tr.data');
+  rows.forEach(function(r){
+    r.style.display = (curCounty==='statewide' || r.dataset.county===curCounty) ? '' : 'none';
+  });
+  const sum = document.getElementById('f-summary');
+  if(curCounty==='statewide') sum.textContent = 'Showing: Statewide \u2014 '+CANVASS.parsed_count+' parsed counties';
+  else if(unparsedRow(curCounty)) sum.textContent = 'Showing: '+curCounty+' \u2014 posted, figures unavailable';
+  else sum.textContent = 'Showing: '+curCounty;
+}
+function refreshCanvass(){
+  renderBoxes();
+  renderCountyNote();
+  filterTable();
+}
+document.getElementById('f-county').addEventListener('change', function(){ curCounty=this.value; refreshCanvass(); });
+buildCountySelect();
+refreshCanvass();
+</script>
+</main><footer><div class="meth">Sources: Utah Lieutenant Governor&rsquo;s election results (electionresults.utah.gov) &mdash; state All-Results reports and county Ballot Statistics reports; county clerk reconciliation pages; Ali Majid&rsquo;s November 2026 Dashboard (Tableau Public) for registration. District boundaries: Utah Geospatial Resource Center (AGRC). All figures are unofficial until canvassed. This tracker is not affiliated with the State of Utah or any county.</div><div class="wrap">&copy; 2026 Tactical Campaigns &middot; <a href="https://tacticalcampaigns.com/">tacticalcampaigns.com</a> &middot; Political data &amp; intelligence</div></footer><script>
+(function(){
+  var dd=document.getElementById('dashDrop'); if(!dd) return;
+  var btn=dd.querySelector('.dropbtn');
+  function close(){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  btn.addEventListener('click',function(e){e.stopPropagation();var o=dd.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
+  dd.addEventListener('mouseenter',function(){dd.classList.add('open');btn.setAttribute('aria-expanded','true');});
+  dd.addEventListener('mouseleave',close);
+  document.addEventListener('click',function(e){if(!dd.contains(e.target))close();});
+  dd.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script></body></html>
