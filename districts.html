@@ -244,7 +244,7 @@ DS.forEach(r=>{
     precCell='<td><span class="small">—</span></td>';
   } else {
     rrsCell='<td data-v="'+r.rrs+'">'+pct(r.rrs)+'</td>';
-    precCell='<td>'+r.rrs_n_prec+' precincts</td>';
+    precCell='<td>'+Math.round(r.rrs_n_prec)+' precincts</td>';
     if(r.chg_pp==null){
       chgCell='<td data-v="-1"><span class="small">—</span></td>';
     } else {
