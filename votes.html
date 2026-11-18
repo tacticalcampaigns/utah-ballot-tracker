@@ -412,6 +412,13 @@ function switchVotesLayer(){
   if(votesLayerKind===cfg.kind){ applyMapFilter(); return; }
   var prevKind=votesLayerKind;
   votesLayerKind=cfg.kind;
+  // Update the title + legend note immediately: they used to update only
+  // in applyMapFilter(), which runs after the GeoJSON fetch, so the old
+  // title lingered until the new layer arrived.
+  var t0=document.getElementById('votes-map-title');
+  if(t0) t0.textContent=VOTES_MAP_TITLES[cfg.kind]||VOTES_MAP_TITLES.county;
+  var n0=document.getElementById('votes-map-legend-note');
+  if(n0) n0.textContent=(cfg.kind==='county' ? VOTES_MAP_NOTES.county : VOTES_MAP_NOTES.district);
   if(!votesMap) return;
   function build(g){
     if(votesLayerKind!==cfg.kind) return; // superseded by a later switch
