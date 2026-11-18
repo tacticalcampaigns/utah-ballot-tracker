@@ -146,7 +146,7 @@ function districtTip(f,v){
   if(v.rrs!=null) s+='<br>2024 GOP strength: '+(v.rrs*100).toFixed(1)+'%';
   return s;
 }
-</script></head><body><header><div class="wrap topbar"><a href="/"><img class="logo" src="logo.png" alt="Tactical Campaigns" width="600" height="288"></a><span class="vdiv" aria-hidden="true"></span><div><h1 class="product">Tactical Data</h1><div class="product-sub">Utah Ballot Count Tracker &middot; 2026 General Election</div></div></div><div class="navstrip"><div class="wrap"><nav><div class="dropdown" id="dashDrop"><button class="dropbtn" aria-haspopup="true" aria-expanded="false">Dashboards &#9662;</button><div class="menu"><a href="/#early-vote"><span>Utah Early Vote Dashboard</span><span class="st">Coming soon</span></a><a href="/#mail-map"><span>Utah Precinct Mail Map</span><span class="st">Coming soon</span></a><a href="/#race-monitor"><span>Utah Race Monitor</span><span class="st">Coming soon</span></a><a href="/utah-ballot-tracker/"><span>Utah Ballot Count Tracker</span><span class="st live">Live</span></a><a href="/utah-influence-mapper/"><span>Utah Influence Mapper</span><span class="st live">Live</span></a></div></div><a href="index.html">Overview</a><a href="counties.html">Counties</a><a href="districts.html" class="active">Districts</a><a href="races.html">Races</a><a href="congress.html">Congress</a><a href="votes.html">Votes</a><a href="canvass.html">Canvass</a></nav></div></div></header><main class="wrap">
+</script></head><body><header><div class="wrap topbar"><a href="/"><img class="logo" src="logo.png" alt="Tactical Campaigns" width="600" height="288"></a><span class="vdiv" aria-hidden="true"></span><div><h1 class="product">Tactical Data</h1><div class="product-sub">Utah Ballot Count Tracker &middot; 2026 General Election</div></div></div><div class="navstrip"><div class="wrap"><nav><div class="dropdown" id="dashDrop"><button class="dropbtn" aria-haspopup="true" aria-expanded="false">Dashboards &#9662;</button><div class="menu"><a href="/#early-vote"><span>Utah Early Vote Dashboard</span><span class="st">Coming soon</span></a><a href="/#mail-map"><span>Utah Precinct Mail Map</span><span class="st">Coming soon</span></a><a href="/#race-monitor"><span>Utah Contest Monitor</span><span class="st">Coming soon</span></a><a href="/utah-ballot-tracker/"><span>Utah Ballot Count Tracker</span><span class="st live">Live</span></a><a href="/utah-influence-mapper/"><span>Utah Influence Mapper</span><span class="st live">Live</span></a></div></div><a href="index.html">Overview</a><a href="counties.html">Counties</a><a href="districts.html" class="active">Districts</a><a href="races.html">Races</a><a href="congress.html">Congress</a><a href="votes.html">Votes</a><a href="canvass.html">Canvass</a></nav></div></div></header><main class="wrap">
 <h1 class="page-title">District Stats</h1>
 <hr class="rule">
 <div class="sub">Every Utah State House, State Senate, and U.S. House district: who is registered there, how the district is voting now, and how strong the Republican vote was in 2024. Updated as of Tue Nov 17, 2026, 1:46 PM MST (state results) &middot; checked Tue Nov 17, 2026, 2:12 PM MST. Click a column header to sort; use the filters to narrow the list.</div>
@@ -200,15 +200,15 @@ function showMap(which){
 <th onclick="sortTable('dst',9,true)">Change 2026 vs 2024 (pts)</th>
 <th class="nosort">Precincts</th></tr></thead><tbody></tbody></table>
 <div class="foot"><b>How to read this:</b> &ldquo;Registered&rdquo; is active registered voters from the Tableau
-voter-file extract (Ali Majid&rsquo;s November 2026 Dashboard, published Nov 2, 2026); the R / D / Unaffiliated /
+voter-file extract (State Dashboard, November 2026, published Nov 2, 2026); the R / D / Unaffiliated /
 Other columns show the count and the share of the district&rsquo;s registered voters. &ldquo;R votes 2026&rdquo; /
 &ldquo;D votes 2026&rdquo; are the votes for Republican and Democratic candidates in the 2026 general election,
-with each party&rsquo;s share of <i>all</i> votes cast in the race in parentheses &mdash; votes for other parties
+with each party&rsquo;s share of <i>all</i> votes cast in the contest in parentheses &mdash; votes for other parties
 (Forward, Libertarian, Unaffiliated, United Utah, Constitution) are counted in the total. &ldquo;Change 2026 vs
 2024 (pts)&rdquo; is the 2026 GOP share of total votes minus the 2024 baseline, in percentage points &mdash;
 green with a + when the GOP share rose, red with a &minus; when it fell &mdash; shown only for actually contested
-races (a dash when there is no R candidate, when Democrats take 100%, or when the R candidate takes 100%).
-Senate seats not on the 2026 ballot show &ldquo;not up in 2026&rdquo;; uncontested races show the single candidate.
+contests (a dash when there is no R candidate, when Democrats take 100%, or when the R candidate takes 100%).
+Senate seats not on the 2026 ballot show &ldquo;not up in 2026&rdquo;; uncontested contests show the single candidate.
 All figures are unofficial until canvassed.
 <b>GOP vote strength 2024</b> is, in effect, the generic Republican ballot share in 2024: (Republican votes
 for the four state constitutional offices in the 2024 general election &mdash; Governor, Attorney General,
@@ -273,7 +273,7 @@ function applyDsFilters(){
 }
 applyDsFilters();
 </script>
-</main><footer><div class="meth">Sources: Utah Lieutenant Governor&rsquo;s election results (electionresults.utah.gov) &mdash; state All-Results reports and county Ballot Statistics reports; county clerk reconciliation pages; Ali Majid&rsquo;s November 2026 Dashboard (Tableau Public) for registration. District boundaries: Utah Geospatial Resource Center (AGRC). All figures are unofficial until canvassed. This tracker is not affiliated with the State of Utah or any county.</div><div class="wrap">&copy; 2026 Tactical Campaigns &middot; <a href="https://tacticalcampaigns.com/">tacticalcampaigns.com</a> &middot; Political data &amp; intelligence</div></footer><script>
+</main><footer><div class="meth">Sources: Utah Lieutenant Governor&rsquo;s election results (electionresults.utah.gov) &mdash; state All-Results reports and county Ballot Statistics reports; county clerk reconciliation pages; the State Dashboard (November 2026) for registration. District boundaries: Utah Geospatial Resource Center (AGRC). All figures are unofficial until canvassed. This tracker is not affiliated with the State of Utah or any county.</div><div class="wrap">&copy; 2026 Tactical Campaigns &middot; <a href="https://tacticalcampaigns.com/">tacticalcampaigns.com</a> &middot; Political data &amp; intelligence</div></footer><script>
 (function(){
   var dd=document.getElementById('dashDrop'); if(!dd) return;
   var btn=dd.querySelector('.dropbtn');
