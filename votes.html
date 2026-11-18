@@ -217,10 +217,6 @@ function buildGeoSelect(){
   html+=group('Congress', g.cds)+group('State Senate', g.ss)+group('State House', g.hs)+group('County', g.cs);
   sel.innerHTML=html;
 }
-function syncDefType(){
-  const dt=document.getElementById('f-deftype');
-  if(dt) dt.disabled = (curParty==='All');
-}
 function renderBoxes(){
   const geo=curGeo;
   const isCounty = geo.indexOf('C-')===0;
@@ -438,7 +434,7 @@ function refreshVotes(){
   applyMapFilter();
 }
 document.getElementById('f-geo').addEventListener('change', function(){ curGeo=this.value; refreshVotes(); });
-document.getElementById('f-party').addEventListener('change', function(){ curParty=this.value; syncDefType(); refreshVotes(); });
+document.getElementById('f-party').addEventListener('change', function(){ curParty=this.value; refreshVotes(); });
 document.getElementById('f-deftype').addEventListener('change', function(){ curDefType=this.value; refreshVotes(); });
 // ---- chart hover tooltip: a real HTML tooltip, shown/hidden by mouse
 // events on the chart container (delegation survives re-renders). The
@@ -475,7 +471,6 @@ document.getElementById('votes-chart').addEventListener('mouseout', function(e){
   if(chartSegTarget(e)) hideChartTip();
 });
 buildGeoSelect();
-syncDefType();
 refreshVotes();
 initVotesMap();
 </script>
